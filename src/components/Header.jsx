@@ -1,28 +1,35 @@
-export default function Header({ currentPage, onNavigate, onSearch }) {
+import { NavLink } from 'react-router-dom';
+
+
+export default function Header() {
   function handleSearchKeyDown(e) {
     if (e.key === 'Enter' && e.target.value.trim()) {
-      onSearch(e.target.value.trim());
+
       e.target.value = '';
     }
   }
 
+
   return (
     <header className="site-header">
       <div className="header-inner">
-        <a
-          href="/"
+        <NavLink to="/"
           className="brand"
-          onClick={e => { e.preventDefault(); onNavigate('home'); }}
         >
           <div className="brand-mark">t</div>
           <div className="brand-name">Terra</div>
-        </a>
+        </NavLink>
 
         <nav className="main-nav">
-          <NavItem label="Главная" page="home" currentPage={currentPage} onNavigate={onNavigate} />
-          <NavItem label="Каталог" page="catalog" currentPage={currentPage} onNavigate={onNavigate} />
-          <NavItem label="О нас" page="about" currentPage={currentPage} onNavigate={onNavigate} />
-          <NavItem label="Контакты" page="contacts" currentPage={currentPage} onNavigate={onNavigate} />
+          <NavLink
+to="/"
+            className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+          >
+            Главная
+          </NavLink>
+          <NavLink className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`} to="/catalog">Каталог</NavLink>
+          <NavLink className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`} to="/about">О нас</NavLink>
+          <NavLink className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`} to="/contacts">Контакты</NavLink>
         </nav>
 
         <div className="header-search">

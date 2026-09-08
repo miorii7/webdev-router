@@ -1,6 +1,6 @@
 import { labelForCategory } from '../data/products.js';
 
-export default function ProductCard({ product, onSelect }) {
+export default function ProductCard({ product }) {
   return (
     <a
       href={'/catalog/' + product.id}
