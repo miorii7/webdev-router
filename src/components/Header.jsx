@@ -1,10 +1,12 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
 export default function Header() {
+  const navigate = useNavigate()
+
   function handleSearchKeyDown(e) {
     if (e.key === 'Enter' && e.target.value.trim()) {
-
+      navigate('/search?q=' + encodeURIComponent(e.target.value.trim()))
       e.target.value = '';
     }
   }
@@ -21,12 +23,7 @@ export default function Header() {
         </NavLink>
 
         <nav className="main-nav">
-          <NavLink
-to="/"
-            className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
-          >
-            Главная
-          </NavLink>
+          <NavLink className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`} to="/">Главная</NavLink>
           <NavLink className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`} to="/catalog">Каталог</NavLink>
           <NavLink className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`} to="/about">О нас</NavLink>
           <NavLink className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`} to="/contacts">Контакты</NavLink>

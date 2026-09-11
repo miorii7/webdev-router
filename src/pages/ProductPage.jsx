@@ -1,6 +1,13 @@
-import { labelForCategory } from '../data/products.js';
+import { labelForCategory, products } from '../data/products.js';
+import { useParams, useNavigate } from 'react-router-dom';
 
-export default function ProductPage({ product, onBack }) {
+
+export default function ProductPage() {
+  const { id } = useParams()
+  const navigate = useNavigate()
+
+  const product = products.find(p => p.id === id);
+
   if (!product) {
     return <div className="not-found-inline">Такого растения нет в каталоге.</div>;
   }
@@ -17,7 +24,7 @@ export default function ProductPage({ product, onBack }) {
           <div className="detail-price">{product.price} ₽</div>
           <p className="detail-desc">{product.description}</p>
           <div className="detail-actions">
-            <button type="button" className="btn ghost" onClick={onBack}>← Назад</button>
+            <button type="button" className="btn ghost" onClick={() => navigate(-1)}>← Назад</button>
           </div>
         </div>
       </div>

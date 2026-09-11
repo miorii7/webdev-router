@@ -94,16 +94,20 @@ import CatalogPage from './pages/CatalogPage.jsx';
 import ProductPage from './pages/ProductPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import ContactsPage from './pages/ContactsPage.jsx';
+import SearchPage from './pages/SearchPage.jsx';
 
 const App = () => {
   return (
 
     <Routes>
       <Route path="/" element={<Layout />}>
+
         <Route index element={<HomePage /> }/>
-        <Route path = "contacts" element={<ContactsPage /> }/>
-        <Route path = "catalog" element={<CatalogPage /> }/>
-        <Route path = "about" element={<AboutPage /> }/>
+        <Route path ="contacts" element={<ContactsPage /> }/>
+        <Route path ="catalog" element={<CatalogPage /> }/>
+        <Route path ="about" element={<AboutPage /> }/>
+        <Route path="catalog/:id" element={<ProductPage /> }/>
+        <Route path="search" element={<SearchPage /> }/>
         
       </Route>
     </Routes>
